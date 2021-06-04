@@ -26,9 +26,9 @@ function App() {
         <Header />
         <Content>
           <Switch>
-            <Route path="/" component={Login} />
-            <Route path="/sign-up" component={SignUp} />
-            <ProtectedRoute path="/posts" component={Posts} /> 
+            <Route exact path="/" component={Login} />
+            <Route exact path="/sign-up" component={SignUp} />
+            <ProtectedRoute exact path="/posts" component={Posts} /> 
           </Switch>
         </Content>
       </Router>
