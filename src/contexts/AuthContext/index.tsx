@@ -15,7 +15,12 @@ export const initialState: AuthContextData = {
   loading: false
 };
 
-const Context = createContext({});
+type AuthContextProps = {
+  state: AuthContextData;
+  actions: {};
+};
+
+export const AuthContext = createContext({} as AuthContextProps);
 
 type AuthContextProviderProps = {
   children: ReactNode;
@@ -26,11 +31,11 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const actions = useRef(buildActions(dispatch));
 
   return (
-    <Context.Provider value={[
+    <AuthContext.Provider value={{
       state,
-      actions.current
-    ]}>
+      actions: actions.current,
+    }}>
       {children}
-    </Context.Provider>
+    </AuthContext.Provider>
   );
 }
