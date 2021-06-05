@@ -31,11 +31,14 @@ const GlobalStyle = createGlobalStyle`
     --dark: #343a40;
 	}
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: 'Noto Serif JP', serif;
     background: var(--light);
     color: var(--dark);
-    scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
       width: 0.5rem;
