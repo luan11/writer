@@ -17,14 +17,14 @@ export const Container = styled.article`
     width: 100%;
     height: 100%;
     background: var(--purple);
-    opacity: 0.60;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #FFF;
-    transition: transform .35s;
-    transform: translateX(-100%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity .35s, z-index 0s .35s;
   }
 
   &:hover {
@@ -34,7 +34,9 @@ export const Container = styled.article`
   &.loading {
 
     &::after {
-      transform: translateX(0);
+      transition: opacity .35s, z-index 0s;
+      opacity: 0.60;
+      z-index: 1;
     }
   }
 `;

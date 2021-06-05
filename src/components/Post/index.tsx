@@ -1,5 +1,9 @@
+import { useState } from 'react';
+
 import { AiOutlineHeart, AiFillHeart, AiOutlineLike, AiFillLike, AiOutlineCalendar } from 'react-icons/ai';
 import { FaRegUserCircle } from 'react-icons/fa';
+
+import api from './../../services/api';
 
 import {
   Container,
@@ -24,33 +28,89 @@ export type PostProps = {
   author: string;
 }
 
-export function Post({ content, createdAt, likes, loves, author }: PostProps) {
+export function Post({ id, content, createdAt, likes, loves, author }: PostProps) {
+  const [loading, setLoading] = useState(false);
+  const [likesCount, setLikesCount] = useState(likes.count);
+  const [liked, setLiked] = useState(likes.reacted);
+  const [lovesCount, setLovesCount] = useState(loves.count);
+  const [loved, setLoved] = useState(loves.reacted);
+
+  async function handleLove() {
+    setLoading(true);
+
+    try {
+      const reaction = !loved;
+
+      await api.post('/reaction', {
+        feedId: id,
+        love: reaction,
+        like: liked
+      });
+
+      setLoved(reaction);
+
+      if (reaction) {
+        setLovesCount(lovesCount + 1);
+      } else {
+        setLovesCount(lovesCount - 1);
+      }
+
+      setLoading(false);
+    } catch (error) { }
+  }
+
+  async function handleLike() {
+    setLoading(true);
+
+    try {
+      const reaction = !liked;
+
+      await api.post('/reaction', {
+        feedId: id,
+        like: reaction,
+        love: loved
+      });
+
+      setLiked(reaction);
+
+      if (reaction) {
+        setLikesCount(likesCount + 1);
+      } else {
+        setLikesCount(likesCount - 1);
+      }
+
+      setLoading(false);
+    } catch (error) { }
+  }
+
   return (
-    <Container>
+    <Container className={loading ? 'loading' : ''}>
       <CreatedAt><AiOutlineCalendar />{createdAt}</CreatedAt>
       <Content>{content}</Content>
       <Author><FaRegUserCircle />{author}</Author>
       <Reactions>
         <ReactButton
           type="button"
+          onClick={handleLove}
         >
           {
-            loves.reacted
+            loved
               ? <AiFillHeart />
               : <AiOutlineHeart />
           }
-          {loves.count}
+          {lovesCount}
         </ReactButton>
 
         <ReactButton
           type="button"
+          onClick={handleLike}
         >
           {
-            likes.reacted
+            liked
               ? <AiFillLike />
               : <AiOutlineLike />
           }
-          {likes.count}
+          {likesCount}
         </ReactButton>
       </Reactions>
     </Container>
