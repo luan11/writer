@@ -24,6 +24,8 @@ export function buildActions(dispatch: Dispatch) {
         return config;
       });
 
+      localStorage.setItem(TOKEN_KEY, payload.token);
+
       dispatch({ type: actionTypes.LOGIN, payload });
     },
     logout: () => {

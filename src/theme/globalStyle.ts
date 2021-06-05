@@ -116,6 +116,19 @@ const GlobalStyle = createGlobalStyle`
         opacity: 0.85;
       }
     }
+
+    &.success {
+      background: var(--green);
+
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+
+    &:disabled {
+      background: var(--gray);
+      cursor: default;
+    }
   }
 `;
 

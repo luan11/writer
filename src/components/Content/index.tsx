@@ -1,15 +1,27 @@
-import { ReactNode } from "react";
+import { Switch } from 'react-router-dom';
+import ProtectedRoute from './../ProtectedRoute';
+
+import useAuthContext from './../../hooks/useAuthContext';
+
+import { Login } from './../../pages/Login';
+import { SignUp } from './../../pages/SignUp';
+import { Posts } from './../../pages/Posts';
 
 import { Container } from './styles';
 
-type ContentProps = {
-  children: ReactNode;
-};
+export function Content() {
+  const { state } = useAuthContext();
 
-export function Content({ children }: ContentProps) {
+  const { authenticated } = state;
+
   return (
     <Container>
-      {children}
+      <Switch>
+        <ProtectedRoute rule={!authenticated} redirect="/posts" exact path="/" component={Login} />
+        <ProtectedRoute rule={!authenticated} redirect="/posts" exact path="/sign-up" component={SignUp} />
+        <ProtectedRoute rule={authenticated} exact path="/posts" component={Posts} />
+        <ProtectedRoute rule={authenticated} exact path="/posts/new" component={Posts} />
+      </Switch>
     </Container>
   );
 }

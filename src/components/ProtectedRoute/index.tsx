@@ -1,17 +1,17 @@
 import { Route, RouteProps, Redirect } from 'react-router-dom';
 
-import useAuthContext from './../../hooks/useAuthContext';
+interface ProtectedRouteProps extends RouteProps {
+  rule: boolean;
+  redirect?: string;
+}
 
-function ProtectedRoute(props: RouteProps) {
-  const { state } = useAuthContext();
-
-  const { authenticated } = state;
+function ProtectedRoute({ rule, redirect, ...props }: ProtectedRouteProps) {
 
   return (
-    authenticated ? (
+    rule ? (
       <Route {...props} />
     ) : (
-      <Redirect to="/" />
+      <Redirect to={redirect ?? '/'} />
     )
   );
 }
