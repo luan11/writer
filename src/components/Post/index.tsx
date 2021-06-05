@@ -56,7 +56,9 @@ export function Post({ id, content, createdAt, likes, loves, author }: PostProps
       }
 
       setLoading(false);
-    } catch (error) { }
+    } catch (error) {
+      setLoading(false);
+    }
   }
 
   async function handleLike() {
@@ -80,7 +82,9 @@ export function Post({ id, content, createdAt, likes, loves, author }: PostProps
       }
 
       setLoading(false);
-    } catch (error) { }
+    } catch (error) {
+      setLoading(false);
+    }
   }
 
   return (

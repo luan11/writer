@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 
 import useAuthContext from './../../hooks/useAuthContext';
 
+import { AiOutlineLogout } from 'react-icons/ai';
+
 import { Container, Nav, MyNavLink } from './styles';
 
 export function Header() {
@@ -23,7 +25,10 @@ export function Header() {
         <Nav>
           {
             authenticated
-              ? <button className="btn error" type="button" onClick={doLogout}>Logout</button>
+              ? <button className="btn error" type="button" onClick={doLogout}>
+                <AiOutlineLogout />
+                  Logout
+                </button>
               : <NavLink className="btn" to="/sign-up" exact>Criar conta</NavLink>
           }
         </Nav>

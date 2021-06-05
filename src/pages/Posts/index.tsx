@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+import { HiOutlineChevronUp } from 'react-icons/hi';
 
 import api from './../../services/api';
 
-import { Loader, Container, Title } from './styles';
+import useEventListener from './../../hooks/useEventListener';
+
+import { Loader, Container, Title, ScrollToTopButton } from './styles';
 
 import { Post, PostProps } from './../../components/Post';
 
@@ -67,7 +71,8 @@ export function Posts() {
         setPosts(posts.slice(0, perPage));
 
         setLoading(false);
-      });
+      })
+      .catch(error => setLoading(false));
   }, []);
 
   function loadMorePosts() {
@@ -78,6 +83,24 @@ export function Posts() {
     setPosts([...posts, ...nextPosts]);
     setPage(nextPage);
   }
+
+  const scrollTopButtonRef = useRef<HTMLButtonElement>(null);
+
+  function onScroll() {
+    const button = scrollTopButtonRef.current;
+
+    const scrolled = window.scrollY;
+
+    if (button) {
+      if (scrolled > 0) {
+        button.classList.add('active');
+      } else {
+        button.classList.remove('active');
+      }
+    }
+  }
+
+  useEventListener('scroll', onScroll);
 
   const isAbleToLoadMore = page + perPage < allPosts.length;
 
@@ -106,6 +129,14 @@ export function Posts() {
                 >
                   Carregar mais posts
                 </button>
+
+                <ScrollToTopButton
+                  ref={scrollTopButtonRef}
+                  type="button"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  <HiOutlineChevronUp />
+                </ScrollToTopButton>
               </>
             }
             {

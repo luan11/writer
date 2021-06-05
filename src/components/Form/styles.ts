@@ -8,6 +8,16 @@ export const Container = styled.form`
   margin: 0 auto;
   width: 50%;
 
+  @media (max-width: 991px) {
+    width: 75%;
+    padding: 2rem 4rem;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+
   >.btn {
     display: table;
     margin: 0 auto;

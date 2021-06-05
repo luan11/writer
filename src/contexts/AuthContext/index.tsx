@@ -5,6 +5,10 @@ import { reducer } from './reducer';
 
 import api from './../../services/api';
 
+import { TOKEN_KEY, getToken } from './../../utils/auth';
+
+const token = getToken();
+
 export type AuthContextData = {
   token: string | null;
   authenticated: boolean;
@@ -12,8 +16,8 @@ export type AuthContextData = {
 };
 
 export const initialState: AuthContextData = {
-  token: null,
-  authenticated: false,
+  token: token,
+  authenticated: token ? true : false,
   loading: false
 };
 
@@ -37,40 +41,17 @@ type AuthContextProviderProps = {
   children: ReactNode;
 };
 
-export const TOKEN_KEY = '@writer-Token';
-
-function getToken() {
-  return localStorage.getItem(TOKEN_KEY);
-}
-
-function setTokenToHeader(token: string) {
-  api.interceptors.request.use(async config => {
-    config.headers.Authorization = `Bearer ${token}`;
-
-    return config;
-  });
-}
-
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const actions = useRef(buildActions(dispatch));
 
+  const { token } = state;
+
   useEffect(() => {
-    const token = getToken();
-
-    if (token) {
-      setTokenToHeader(token);
-
-      actions.current.login({
-        token: token,
-        authenticated: true
-      });
-    }
-  }, []);
+    api.defaults.headers['Authorization'] = `Bearer ${token}`;
+  }, [token]);
 
   function doLogin(payload: LoginProps) {
-    setTokenToHeader(payload.token);
-
     localStorage.setItem(TOKEN_KEY, payload.token);
 
     actions.current.login(payload);

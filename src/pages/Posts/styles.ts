@@ -60,3 +60,31 @@ export const Container = styled.section`
 export const Title = styled.h2`
   text-align: center;
 `;
+
+export const ScrollToTopButton = styled.button`
+  display: block;
+  position: fixed;
+  right: 0;
+  bottom: 1.5rem;
+  z-index: 98;
+  border-radius: 4px;
+  background: var(--indigo);
+  color: var(--light);
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  border: 0;
+  font-size: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: all .35s;
+  transform: translateX(100%);
+
+  &:hover {
+    background: var(--purple);
+  }
+
+  &.active {
+    right: 1.5rem;
+    transform: translateX(0);
+  }
+`;

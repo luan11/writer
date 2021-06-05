@@ -18,6 +18,21 @@ export const Container = styled.header`
     >h1 {
       margin: 0;
     }
+
+    .btn.error {
+      > svg {
+        display: none;
+      }
+
+      @media (max-width: 991px) {
+        font-size: 0;
+
+        >svg {
+          display: block;
+          font-size: 1.25rem;
+        }
+      }
+    }
   }
 `;
 
