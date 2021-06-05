@@ -35,9 +35,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Serif JP', serif;
     background: var(--light);
     color: var(--dark);
+    scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
-      width: 0.25rem;
+      width: 0.5rem;
     }
     
     &::-webkit-scrollbar-track {
@@ -73,6 +74,7 @@ const GlobalStyle = createGlobalStyle`
 	.container {
 		width: 100%;
 		margin: 0 auto;
+    padding: 0 1rem;
 
 		@media (min-width: 576px) {
 			width: 540px;
@@ -141,6 +143,18 @@ const GlobalStyle = createGlobalStyle`
     &:disabled {
       background: var(--gray);
       cursor: default;
+    }
+  }
+
+  @keyframes load {
+    from {
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+
+    to {
+      transform: rotate(360deg);
+      opacity: 0.5;
     }
   }
 `;
