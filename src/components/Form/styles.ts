@@ -63,6 +63,38 @@ export const Input = styled.input`
   }
 `;
 
+export const TextArea = styled.textarea`
+  border-radius: 4px;
+  border: 2px solid #e6e3ea;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  transition: all .35s ease;
+  outline: none;
+  resize: none;
+  height: 135px;
+
+  &:focus {
+    border-color: var(--gray);
+  }
+
+  &:not(:placeholder-shown) {
+    border-color: var(--indigo);
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+  
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--indigo);
+    border-radius: 4px;
+  }
+`;
+
 export const Error = styled.small`
   display: block;
   color: var(--red);

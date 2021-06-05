@@ -13,7 +13,11 @@ export function Form() {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const { state: { loading }, actions, doLogin } = useAuthContext();
+  const {
+    state: { loading },
+    actions: { setLoading, setLoaded },
+    doLogin
+  } = useAuthContext();
 
   type LoginData = {
     username: string;
@@ -23,7 +27,7 @@ export function Form() {
   async function handleLogin({ username, password }: LoginData) {
     setErrorMessage(null);
 
-    actions.setLoading();
+    setLoading();
 
     try {
       const { data } = await api.post('/sign-in', {
@@ -31,7 +35,7 @@ export function Form() {
         password
       });
 
-      actions.setLoaded();
+      setLoaded();
 
       doLogin({
         token: data,
@@ -40,7 +44,7 @@ export function Form() {
     } catch (error) {
       setErrorMessage('Nome de usuário e/ou senha incorretos!');
 
-      actions.setLoaded();
+      setLoaded();
     }
   }
 

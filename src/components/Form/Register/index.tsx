@@ -16,7 +16,7 @@ export function Form() {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-  const { state: { loading }, actions } = useAuthContext();
+  const { state: { loading }, actions: { setLoading, setLoaded } } = useAuthContext();
 
   type RegisterData = {
     username: string;
@@ -27,7 +27,7 @@ export function Form() {
     setErrorMessage(null);
     setSuccessMessage(null);
 
-    actions.setLoading();
+    setLoading();
 
     try {
       await api.post('/sign-up', {
@@ -42,15 +42,15 @@ export function Form() {
 
       setSuccessMessage('Conta criada com sucesso');
 
-      actions.setLoaded();
+      setLoaded();
     } catch (error) {
       setErrorMessage('Não foi possível criar a conta, tente novamente');
 
-      actions.setLoaded();
+      setLoaded();
     }
   }
 
-  const loginOptions = {
+  const registerOptions = {
     username: { required: 'O nome de usuário é obrigatório' },
     password: { required: 'A senha é obrigatória' },
   }
@@ -61,13 +61,13 @@ export function Form() {
 
       <FormGroup>
         <Label>Usuário</Label>
-        <Input type="text" placeholder=" " {...register('username', loginOptions.username)} />
+        <Input type="text" placeholder=" " {...register('username', registerOptions.username)} />
         {errors.username && <Error>{errors.username.message}</Error>}
       </FormGroup>
 
       <FormGroup>
         <Label>Senha</Label>
-        <Input type="password" placeholder=" " {...register('password', loginOptions.password)} />
+        <Input type="password" placeholder=" " {...register('password', registerOptions.password)} />
         {errors.password && <Error>{errors.password.message}</Error>}
       </FormGroup>
 

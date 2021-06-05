@@ -10,7 +10,7 @@ export function Header() {
   return (
     <Container>
       <div className="container">
-        <h1><NavLink to="/">Writer</NavLink></h1>
+        <h1><NavLink to="/" exact>Writer</NavLink></h1>
 
         <Nav>
           <MyNavLink activeClassName="active" to="/posts" exact>Posts</MyNavLink>

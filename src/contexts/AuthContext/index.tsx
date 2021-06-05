@@ -43,6 +43,14 @@ function getToken() {
   return localStorage.getItem(TOKEN_KEY);
 }
 
+function setTokenToHeader(token: string) {
+  api.interceptors.request.use(async config => {
+    config.headers.Authorization = `Bearer ${token}`;
+
+    return config;
+  });
+}
+
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const actions = useRef(buildActions(dispatch));
@@ -51,6 +59,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const token = getToken();
 
     if (token) {
+      setTokenToHeader(token);
+
       actions.current.login({
         token: token,
         authenticated: true
@@ -59,11 +69,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   }, []);
 
   function doLogin(payload: LoginProps) {
-    api.interceptors.request.use(async config => {
-      config.headers.Authorization = `Bearer ${payload.token}`;
-
-      return config;
-    });
+    setTokenToHeader(payload.token);
 
     localStorage.setItem(TOKEN_KEY, payload.token);
 
