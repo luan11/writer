@@ -18,12 +18,12 @@ export function Form() {
 
   const { state: { loading }, actions } = useAuthContext();
 
-  type LoginData = {
+  type RegisterData = {
     username: string;
     password: string;
   };
 
-  async function handleRegister({ username, password }: LoginData) {
+  async function handleRegister({ username, password }: RegisterData) {
     setErrorMessage(null);
     setSuccessMessage(null);
 

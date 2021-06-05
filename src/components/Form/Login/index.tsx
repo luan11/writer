@@ -13,7 +13,7 @@ export function Form() {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const { state: { loading }, actions } = useAuthContext();
+  const { state: { loading }, actions, doLogin } = useAuthContext();
 
   type LoginData = {
     username: string;
@@ -32,7 +32,8 @@ export function Form() {
       });
 
       actions.setLoaded();
-      actions.login({
+
+      doLogin({
         token: data,
         authenticated: true
       });

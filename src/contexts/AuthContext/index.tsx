@@ -3,6 +3,8 @@ import { createContext, ReactNode, useEffect, useReducer, useRef } from 'react';
 import { buildActions, LoginProps } from './build-actions';
 import { reducer } from './reducer';
 
+import api from './../../services/api';
+
 export type AuthContextData = {
   token: string | null;
   authenticated: boolean;
@@ -25,6 +27,8 @@ type Actions = {
 type AuthContextProps = {
   state: AuthContextData;
   actions: Actions;
+  doLogin: (payload: LoginProps) => void;
+  doLogout: () => void;
 };
 
 export const AuthContext = createContext({} as AuthContextProps);
@@ -54,10 +58,30 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
   }, []);
 
+  function doLogin(payload: LoginProps) {
+    api.interceptors.request.use(async config => {
+      config.headers.Authorization = `Bearer ${payload.token}`;
+
+      return config;
+    });
+
+    localStorage.setItem(TOKEN_KEY, payload.token);
+
+    actions.current.login(payload);
+  }
+
+  function doLogout() {
+    localStorage.removeItem(TOKEN_KEY);
+
+    actions.current.logout();
+  }
+
   return (
     <AuthContext.Provider value={{
       state,
       actions: actions.current,
+      doLogin,
+      doLogout,
     }}>
       {children}
     </AuthContext.Provider>

@@ -10,9 +10,7 @@ import { Posts } from './../../pages/Posts';
 import { Container } from './styles';
 
 export function Content() {
-  const { state } = useAuthContext();
-
-  const { authenticated } = state;
+  const { state: { authenticated } } = useAuthContext();
 
   return (
     <Container>
