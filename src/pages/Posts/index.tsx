@@ -72,7 +72,7 @@ export function Posts() {
 
         setLoading(false);
       })
-      .catch(error => setLoading(false));
+      .catch(() => setLoading(false));
   }, []);
 
   function loadMorePosts() {
@@ -108,7 +108,7 @@ export function Posts() {
     <>
       {
         loading
-          ? <Loader><span></span></Loader>
+          ? <Loader data-testid="loader"><span></span></Loader>
           : <div className="container">
             {
               posts.length > 0 &&
@@ -123,7 +123,7 @@ export function Posts() {
 
                 <button
                   type="submit"
-                  className="btn"
+                  className={`btn ${isAbleToLoadMore ? 'load-more' : ''}`}
                   disabled={!isAbleToLoadMore}
                   onClick={loadMorePosts}
                 >
