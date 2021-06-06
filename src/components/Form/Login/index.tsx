@@ -59,13 +59,23 @@ export function Form() {
 
       <FormGroup>
         <Label>Usuário</Label>
-        <Input type="text" placeholder=" " {...register('username', loginOptions.username)} />
+        <Input
+          data-testid="username"
+          type="text"
+          placeholder=" "
+          {...register('username', loginOptions.username)}
+        />
         {errors.username && <Error>{errors.username.message}</Error>}
       </FormGroup>
 
       <FormGroup>
         <Label>Senha</Label>
-        <Input type="password" placeholder=" " {...register('password', loginOptions.password)} />
+        <Input
+          data-testid="password"
+          type="password"
+          placeholder=" "
+          {...register('password', loginOptions.password)}
+        />
         {errors.password && <Error>{errors.password.message}</Error>}
       </FormGroup>
 

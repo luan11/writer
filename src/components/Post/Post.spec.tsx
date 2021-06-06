@@ -1,70 +1,25 @@
 import { render, screen } from '@testing-library/react';
 
 import { Post } from '.';
+import { postPropsMock } from './mock';
+
+const props = postPropsMock;
 
 describe('<Post />', () => {
-  const postData = {
-    id: 0,
-    content: 'My content',
-    createdAt: new Date().toLocaleDateString(),
-    likes: {
-      count: 0,
-      reacted: false
-    },
-    loves: {
-      count: 0,
-      reacted: false
-    },
-    author: 'John Doe'
-  };
+  it('should render Post correctly', () => {
+    const regexp = new RegExp(`${props.likes.count}|${props.loves.count}`);
 
-  it('should render the post with the created at date', () => {
-    render(<Post {...postData} />);
+    render(<Post {...props} />);
 
-    expect.assertions(1);
-
-    const content = screen.getByText(postData.createdAt, {
-      selector: 'time'
-    });
-
-    expect(content).toBeInTheDocument();
+    expect(screen.getByText(props.createdAt, { selector: 'time' })).toBeInTheDocument();
+    expect(screen.getByText(props.content, { selector: 'p' })).toBeInTheDocument();
+    expect(screen.getByText(props.author, { selector: 'p' })).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: regexp })).toHaveLength(2);
   });
 
-  it('should render the post with the content "My content"', () => {
-    render(<Post {...postData} />);
+  it('should match snapshot', () => {
+    const { container } = render(<Post {...props} />);
 
-    expect.assertions(1);
-
-    const content = screen.getByText(postData.content, {
-      selector: 'p'
-    });
-
-    expect(content).toBeInTheDocument();
-  });
-
-  it('should render the post with the author name "John Doe"', () => {
-    render(<Post {...postData} />);
-
-    expect.assertions(1);
-
-    const content = screen.getByText(postData.author, {
-      selector: 'p'
-    });
-
-    expect(content).toBeInTheDocument();
-  });
-
-  it('should render the post with the reaction buttons showing the count', () => {
-    const regexp = new RegExp(`${postData.likes.count}|${postData.loves.count}`);
-
-    render(<Post {...postData} />);
-
-    expect.assertions(1);
-
-    const content = screen.getAllByRole('button', {
-      name: regexp
-    });
-
-    expect(content).toHaveLength(2);
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
