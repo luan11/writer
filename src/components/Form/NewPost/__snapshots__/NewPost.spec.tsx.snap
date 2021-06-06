@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NewPost /> should match snapshot 1`] = `
+<form
+  autocomplete="off"
+  class="sc-bdnxRM fvJqbn"
+>
+  <h2
+    class="sc-gtsrHT gNhmEX"
+  >
+    Novo Post
+  </h2>
+  <div
+    class="sc-dlnjwi ctuddm"
+  >
+    <label
+      class="sc-hKFxyN dCXiQB"
+    >
+      Conteúdo
+    </label>
+    <textarea
+      class="sc-jSFjdj bpiikB"
+      name="content"
+      placeholder="Conteúdo do seu post..."
+    />
+  </div>
+  <button
+    class="btn"
+    type="submit"
+  >
+    Criar
+  </button>
+</form>
+`;
