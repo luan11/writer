@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Register /> should match snapshot 1`] = `
+<form
+  autocomplete="off"
+  class="sc-bdnxRM fvJqbn"
+>
+  <h2
+    class="sc-gtsrHT gNhmEX"
+  >
+    Crie sua conta
+  </h2>
+  <div
+    class="sc-dlnjwi ctuddm"
+  >
+    <label
+      class="sc-hKFxyN dCXiQB"
+    >
+      Usuário
+    </label>
+    <input
+      class="sc-eCApnc cqYdUq"
+      data-testid="username"
+      name="username"
+      placeholder=" "
+      type="text"
+    />
+  </div>
+  <div
+    class="sc-dlnjwi ctuddm"
+  >
+    <label
+      class="sc-hKFxyN dCXiQB"
+    >
+      Senha
+    </label>
+    <input
+      class="sc-eCApnc cqYdUq"
+      data-testid="password"
+      name="password"
+      placeholder=" "
+      type="password"
+    />
+  </div>
+  <button
+    class="btn"
+    type="submit"
+  >
+    Criar
+  </button>
+</form>
+`;
