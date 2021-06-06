@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+<h1 align="center">Welcome to 🧾 Writer 👋</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Application developed for an interview test of Segware company.
 
-## Available Scripts
+<p align="center">
+	<img alt="Languages count" src="https://img.shields.io/github/languages/count/luan11/writer?style=for-the-badge">
+	<img alt="Top language" src="https://img.shields.io/github/languages/top/luan11/writer?style=for-the-badge">
+</p>
 
-In the project directory, you can run:
+<p align="center">
+	<img alt="Cover" src="https://raw.githubusercontent.com/luan11/qrcoder/main/docs/cover.jpg">
+</p>
 
-### `yarn start`
+<h3 align="center">
+  <a href="">✨ Demo</a>
+</h3>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Table of Content
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Technologies](#technologies)
+- [Install](#install)
+- [Usage](#usage)
+- [Run tests](#run-tests)
+- [Author](#author)
 
-### `yarn test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [ReactJS](https://reactjs.org/)
+- [React Router DOM](https://reactrouter.com/web/guides/quick-start/)
+- [styled-components](https://styled-components.com/)
+- [React Hook Form](https://react-hook-form.com/)
+- [axios](https://github.com/axios/axios/)
 
-### `yarn build`
+## Install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run this application, you'll need Node.js v14.15.4 + Yarn v1.22.10 installed on your computer.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```sh
+yarn install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `yarn eject`
+```sh
+yarn run start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Run tests
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+yarn run test
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Author
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+👤 **Luan Novais**
 
-## Learn More
+- Website: luandev.ml
+- Github: [@luan11](https://github.com/luan11)
+- LinkedIn: [@luan-novais11](https://linkedin.com/in/luan-novais11)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Show your support
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Give a ⭐️ if this project helped you!
+
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
