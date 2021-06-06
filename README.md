@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to 🧾 Writer 👋</h1>
 
-> Application developed for an interview test of Segware company.
+<p align="center">Application developed for an interview test of Segware company.</p>
 
 <p align="center">
 	<img alt="Languages count" src="https://img.shields.io/github/languages/count/luan11/writer?style=for-the-badge">
@@ -8,11 +8,11 @@
 </p>
 
 <p align="center">
-	<img alt="Cover" src="https://raw.githubusercontent.com/luan11/qrcoder/main/docs/cover.jpg">
+	<img alt="Cover" src="https://raw.githubusercontent.com/luan11/writer/main/docs/cover.jpg">
 </p>
 
 <h3 align="center">
-  <a href="">✨ Demo</a>
+  <a href="https://writer-beta.vercel.app" target="_blank">✨ Demo</a>
 </h3>
 
 # Table of Content
