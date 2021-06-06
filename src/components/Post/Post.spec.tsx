@@ -65,6 +65,6 @@ describe('<Post />', () => {
       name: regexp
     });
 
-    expect(content).not.toBeNull();
+    expect(content).toHaveLength(2);
   });
 });
