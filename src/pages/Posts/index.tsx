@@ -4,11 +4,13 @@ import { HiOutlineChevronUp } from 'react-icons/hi';
 
 import api from './../../services/api';
 
+import { TOKEN_KEY, getToken } from './../../utils/auth';
+
 import useEventListener from './../../hooks/useEventListener';
 
-import { Loader, Container, Title, ScrollToTopButton } from './styles';
-
 import { Post, PostProps } from './../../components/Post';
+
+import { Loader, Container, Title, ScrollToTopButton } from './styles';
 
 type PostAuthor = {
   id: number;
@@ -36,6 +38,10 @@ export function Posts() {
 
   useEffect(() => {
     setLoading(true);
+
+    if (!api.defaults.headers.hasOwnProperty('Authorization')) {
+      api.defaults.headers['Authorization'] = `Bearer ${getToken()}`;
+    }
 
     api.get<PostData[]>('/feeds')
       .then(response => {
@@ -72,7 +78,13 @@ export function Posts() {
 
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setLoading(false);
+
+        localStorage.removeItem(TOKEN_KEY);
+
+        window.location.reload();
+      });
   }, []);
 
   function loadMorePosts() {
